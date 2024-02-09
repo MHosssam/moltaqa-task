@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task/core/utils/assets_manager.dart';
-import 'package:task/core/utils/extensions.dart';
+import 'package:task/core/constant/assets_manager.dart';
+import 'package:task/core/constant/extensions.dart';
 import 'package:task/features/login/presentation/widget/forms_widget.dart';
 
 class LoginScreen extends StatelessWidget {

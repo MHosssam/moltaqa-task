@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task/core/utils/app_strings.dart';
-import 'package:task/features/splash/presentation/screens/splash_screen.dart';
+import 'package:task/core/constant/app_strings.dart';
+import 'package:task/features/splash/splash_screen.dart';
 
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';

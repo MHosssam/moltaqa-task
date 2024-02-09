@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:task/features/alerts/presentation/screens/alerts_screen.dart';
 import 'package:task/features/login/presentation/screens/login_screen.dart';
-import 'package:task/features/splash/presentation/screens/splash_screen.dart';
+import 'package:task/features/splash/splash_screen.dart';
 
 class Routes {
   static const String initialRoute = '/';

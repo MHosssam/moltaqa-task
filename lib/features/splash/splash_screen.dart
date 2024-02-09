@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task/config/routes/app_routes.dart';
-import 'package:task/core/utils/assets_manager.dart';
+import 'package:task/core/constant/assets_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

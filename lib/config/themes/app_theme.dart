@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task/core/utils/app_strings.dart';
-import 'package:task/core/utils/my_sizes.dart';
+import 'package:task/core/constant/app_strings.dart';
+import 'package:task/core/constant/my_sizes.dart';
 
 class AppTheme {
   ColorScheme getCurrentColorScheme({required Brightness brightness}) {
@@ -10,7 +10,7 @@ class AppTheme {
   static const colorSchemeLight = ColorScheme(
     primary: Color(0xff293E96),
     surface: Color(0xff3C76FF),
-    primaryContainer: Color(0xff4A4A4A),
+    primaryContainer: Color(0xff959595),
     secondary: Color(0xff00C0FF),
     background: Color(0xFFF7F7F7),
     error: Colors.red,
@@ -228,9 +228,9 @@ class AppTheme {
   InputDecorationTheme inputDecorationTheme({required Brightness brightness}) {
     var colorScheme = getCurrentColorScheme(brightness: brightness);
     return InputDecorationTheme(
-      contentPadding: const EdgeInsets.symmetric(horizontal: MySizes.largePadding),
+      contentPadding: const EdgeInsets.symmetric(horizontal: MySizes.defaultPadding),
       hintStyle: getTextTheme(brightness: brightness).bodyLarge?.copyWith(
-            color: colorScheme.onPrimaryContainer,
+            color: colorScheme.primaryContainer,
             height: 2.3,
           ),
       errorStyle: getTextTheme(brightness: brightness).bodySmall?.copyWith(
@@ -238,28 +238,28 @@ class AppTheme {
             height: 1.2,
           ),
       filled: true,
-      fillColor: colorScheme.primaryContainer,
+      fillColor: colorScheme.background,
       isDense: false,
       errorMaxLines: 2,
       border: OutlineInputBorder(
-        borderSide: BorderSide(width: 1.5, color: colorScheme.primaryContainer),
-        borderRadius: MySizes.circleBorderRadius,
+        borderSide: BorderSide(width: 1.5, color: colorScheme.background),
+        borderRadius: MySizes.borderRadius,
       ),
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(width: 1.5, color: colorScheme.primary),
-        borderRadius: MySizes.circleBorderRadius,
+        borderRadius: MySizes.borderRadius,
       ),
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(width: 1.5, color: colorScheme.primaryContainer),
-        borderRadius: MySizes.circleBorderRadius,
+        borderSide: BorderSide(width: 1.5, color: colorScheme.background),
+        borderRadius: MySizes.borderRadius,
       ),
       errorBorder: OutlineInputBorder(
         borderSide: BorderSide(width: 1.5, color: colorScheme.error),
-        borderRadius: MySizes.circleBorderRadius,
+        borderRadius: MySizes.borderRadius,
       ),
       focusedErrorBorder: OutlineInputBorder(
         borderSide: BorderSide(width: 1.5, color: colorScheme.error),
-        borderRadius: MySizes.circleBorderRadius,
+        borderRadius: MySizes.borderRadius,
       ),
     );
   }
@@ -274,7 +274,7 @@ class AppTheme {
                 height: 1.8,
               ),
         ),
-        backgroundColor: MaterialStateProperty.all<Color?>(colorScheme.primary),
+        backgroundColor: MaterialStateProperty.all<Color?>(Colors.transparent),
         foregroundColor: MaterialStateProperty.all<Color?>(colorScheme.onPrimary),
         elevation: MaterialStateProperty.all<double>(0),
         shadowColor: MaterialStateProperty.all<Color?>(Colors.transparent),
