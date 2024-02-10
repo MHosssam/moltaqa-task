@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task/features/alerts/presentation/screens/alerts_screen.dart';
-import 'package:task/features/login/presentation/screens/login_screen.dart';
+import 'package:task/features/alerts/presentation/pages/alerts_screen.dart';
+import 'package:task/features/login/presentation/pages/login_screen.dart';
 import 'package:task/features/splash/splash_screen.dart';
 
 class Routes {

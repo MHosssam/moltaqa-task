@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:task/core/constant/app_strings.dart';
 import 'package:task/features/splash/splash_screen.dart';
 
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
+import 'core/local/TokenUtil.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
+  await TokenUtil.loadTokenToMemory();
+
   runApp(const MyApp());
 }
 

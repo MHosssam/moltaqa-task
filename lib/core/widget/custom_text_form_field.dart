@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:task/core/constant/extensions.dart';
-import 'package:task/core/constant/my_sizes.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  final IconData? prefixIcon;
+  final Widget? prefixWidget;
   final TextEditingController? controller;
   final String? hintText;
   final IconData? suffixIcon;
@@ -28,7 +27,7 @@ class CustomTextFormField extends StatefulWidget {
 
   const CustomTextFormField({
     Key? key,
-    this.prefixIcon,
+    this.prefixWidget,
     this.controller,
     this.hintText,
     this.suffixIcon,
@@ -89,25 +88,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           hintText: widget.hintText,
           contentPadding: widget.contentPadding,
           fillColor: widget.fillColor,
-          prefixIcon: widget.prefixIcon != null
-              ? Align(
-                  widthFactor: 1.0,
-                  alignment: Alignment.topCenter,
-                  heightFactor: (widget.maxLine ?? 1).toDouble(),
-                  child: Container(
-                    width: MySizes.buttonHeight,
-                    height: MySizes.buttonHeight,
-                    margin: const EdgeInsetsDirectional.only(start: MySizes.defaultPadding * .25),
-                    child: Icon(
-                      widget.prefixIcon!,
-                      size: MySizes.largePadding * .75,
-                      color: _focusNode.hasFocus
-                          ? context.colorScheme.primary
-                          : context.colorScheme.onPrimaryContainer,
-                    ),
-                  ),
-                )
-              : null,
+          prefixIcon: widget.prefixWidget,
           suffixIcon: widget.suffixBool == true
               ? IconButton(
                   onPressed: () => setState(() => obscureText = !obscureText),
@@ -120,7 +101,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         ),
         style: context.textTheme.bodyLarge?.copyWith(
           color: context.colorScheme.onBackground,
-          height: widget.maxLine != null ? 1.2 : 2.3,
+          height:  1.2,
         ),
       ),
     );

@@ -9,6 +9,7 @@ class AppElevatedButton extends StatelessWidget {
   final Gradient? gradient;
   final VoidCallback onPressed;
   final String btnText;
+  final TextStyle? textStyle;
 
   const AppElevatedButton({
     Key? key,
@@ -18,6 +19,7 @@ class AppElevatedButton extends StatelessWidget {
     this.width,
     this.height,
     this.gradient,
+    this.textStyle,
   }) : super(key: key);
 
   @override
@@ -37,7 +39,17 @@ class AppElevatedButton extends StatelessWidget {
               ],
             ),
       ),
-      child: ElevatedButton(onPressed: onPressed, child: Text(btnText)),
+      child: ElevatedButton(
+        onPressed: onPressed,
+        child: Text(
+          btnText,
+          style: textStyle ??
+              context.textTheme.bodyLarge?.copyWith(
+                fontWeight: FontWeight.w600,
+                color: context.colorScheme.onPrimary,
+              ),
+        ),
+      ),
     );
   }
 }

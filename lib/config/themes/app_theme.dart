@@ -228,10 +228,13 @@ class AppTheme {
   InputDecorationTheme inputDecorationTheme({required Brightness brightness}) {
     var colorScheme = getCurrentColorScheme(brightness: brightness);
     return InputDecorationTheme(
-      contentPadding: const EdgeInsets.symmetric(horizontal: MySizes.defaultPadding),
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: MySizes.defaultPadding,
+        vertical: MySizes.defaultPadding * 0.4,
+      ),
       hintStyle: getTextTheme(brightness: brightness).bodyLarge?.copyWith(
             color: colorScheme.primaryContainer,
-            height: 2.3,
+            height: 1.2,
           ),
       errorStyle: getTextTheme(brightness: brightness).bodySmall?.copyWith(
             color: colorScheme.error,
@@ -269,9 +272,10 @@ class AppTheme {
     return ElevatedButtonThemeData(
       style: ButtonStyle(
         textStyle: MaterialStateProperty.all<TextStyle?>(
-          getTextTheme(brightness: brightness).labelLarge?.copyWith(
-                fontFamily: AppString.fontFamily,
+          getTextTheme(brightness: brightness).bodyLarge?.copyWith(
                 height: 1.8,
+                fontWeight: FontWeight.w600,
+                fontFamily: AppString.fontFamily,
               ),
         ),
         backgroundColor: MaterialStateProperty.all<Color?>(Colors.transparent),
