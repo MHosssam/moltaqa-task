@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:task/core/constant/extensions.dart';
 import 'package:task/core/constant/my_sizes.dart';
 import 'package:task/core/widget/custom_appbar.dart';
-import 'package:task/features/alerts/presentation/widget/received_cell.dart';
-import 'package:task/features/alerts/presentation/widget/sent_cell.dart';
+import '../widget/received_cell.dart';
+import '../widget/sent_cell.dart';
 import '../widget/search_filter_widget.dart';
 import '../widget/tabs_widget.dart';
 

@@ -25,16 +25,16 @@ class NetworkCall {
     try {
       Response response;
 
-      if (method == HttpMethod.PUT) {
+      if (method == HttpMethod.put) {
         response = (await ApiClient.putRequest(
           endPoint!,
           requestBody,
           isMultipart: isMultipart,
           multiPartValues: filesMap,
         ));
-      } else if (method == HttpMethod.DELETE) {
+      } else if (method == HttpMethod.delete) {
         response = (await ApiClient.deleteRequest(endPoint!, queryParams: queryParams));
-      } else if (method == HttpMethod.GET) {
+      } else if (method == HttpMethod.get) {
         response = (await ApiClient.getRequest(endPoint ?? '', queryParams: queryParams));
       } else {
         response = (await ApiClient.postRequest(

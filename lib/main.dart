@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/core/constant/app_strings.dart';
+import 'package:task/features/login/presentation/bloc/login_cubit.dart';
 import 'package:task/features/splash/splash_screen.dart';
 
 import 'config/routes/app_routes.dart';
 import 'config/themes/app_theme.dart';
-import 'core/local/TokenUtil.dart';
+import 'injection_container.dart' as di;
+import 'injection_container.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await GetStorage.init();
-  await TokenUtil.loadTokenToMemory();
+  await di.init();
 
   runApp(const MyApp());
 }
@@ -19,15 +20,20 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: AppString.appName,
-      home: const SplashScreen(),
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: AppRoutes.onGenerateRoute,
-      theme: AppTheme().getTheme(Brightness.light),
-      builder: (context, child) => Directionality(
-        textDirection: TextDirection.rtl,
-        child: child ?? Container(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginCubit>(create: (BuildContext context) => sl<LoginCubit>()),
+      ],
+      child: MaterialApp(
+        title: AppString.appName,
+        home: const SplashScreen(),
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: AppRoutes.onGenerateRoute,
+        theme: AppTheme().getTheme(Brightness.light),
+        builder: (context, child) => Directionality(
+          textDirection: TextDirection.rtl,
+          child: child ?? Container(),
+        ),
       ),
     );
   }

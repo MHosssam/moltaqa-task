@@ -2,10 +2,10 @@ import 'package:task/core/utils/enumeration.dart';
 
 class HttpMethod extends Enum {
   HttpMethod(value) : super(value);
-  static final HttpMethod GET = HttpMethod('GET');
-  static final HttpMethod POST = HttpMethod('POST');
-  static final HttpMethod DELETE = HttpMethod('DELETE');
-  static final HttpMethod PUT = HttpMethod('PUT');
+  static final HttpMethod get = HttpMethod('GET');
+  static final HttpMethod post = HttpMethod('POST');
+  static final HttpMethod delete = HttpMethod('DELETE');
+  static final HttpMethod put = HttpMethod('PUT');
 }
 
 class NetworkStatusCodes extends Enum {
