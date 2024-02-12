@@ -14,7 +14,8 @@ class ApiClient {
       HttpHeaders.acceptHeader: 'application/json',
       HttpHeaders.contentTypeHeader: 'application/jsons',
     };
-    mHeaders["Authorization"] = 'Bearer ${TokenUtil.getTokenFromMemory()}';
+    // mHeaders["Authorization"] = 'Bearer ${TokenUtil.getTokenFromMemory()}';
+    mHeaders["Authorization"] = 'Bearer 110|e0M0XTpejQxHKBNp9eC8VWEfaQicKZ4RQSzVmy6la346e98e';
     mHeaders["Accept-Language"] = getValue(AppString.locale) ?? 'ar';
     return mHeaders;
   }

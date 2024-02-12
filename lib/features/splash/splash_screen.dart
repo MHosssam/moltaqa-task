@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void splashTimer() async {
     await Future.wait([Future.delayed(const Duration(seconds: 3))]).then(
-      (value) => Navigator.pushNamed(context, Routes.loginRoute),
+      (value) => Navigator.pushNamed(context, Routes.alertsRoute),
     );
   }
 

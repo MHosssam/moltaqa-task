@@ -3,10 +3,14 @@ import 'package:task/core/constant/assets_manager.dart';
 import 'package:task/core/constant/extensions.dart';
 import 'package:task/core/constant/my_sizes.dart';
 import 'package:task/core/widget/custom_divider.dart';
+import 'package:task/core/widget/shimmer_widget.dart';
+import 'package:task/features/alerts/domain/entities/alerts.dart';
 import 'package:task/features/alerts/presentation/widget/row_value.dart';
 
 class SentCell extends StatelessWidget {
-  const SentCell({super.key});
+  final bool isLoading;
+  final Alerts? sentData;
+  const SentCell({super.key, required this.isLoading, this.sentData});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +30,10 @@ class SentCell extends StatelessWidget {
             ),
             child: Row(
               children: [
-                // if status = finished : use this => notificationRead
                 Image.asset(
-                  ImageAssets.notification,
+                  sentData?.reminderStatus == 'finished'
+                      ? ImageAssets.notificationRead
+                      : ImageAssets.notification,
                   width: MySizes.largePadding,
                   height: MySizes.largePadding,
                 ),
@@ -39,51 +44,58 @@ class SentCell extends StatelessWidget {
           ),
           CustomDivider(isVertical: false, size: context.width),
           15.ph,
-          RowValue(
-            icon: ImageAssets.user,
-            title: 'المرسل اليه',
-            value: 'احمد عادل',
-          ),
+          isLoading
+              ? const ShimmerWidget(height: MySizes.defaultPadding)
+              : RowValue(
+                  title: 'المرسل اليه',
+                  icon: ImageAssets.user,
+                  value: sentData?.senderName ?? '',
+                ),
           6.ph,
-          RowValue(
-            icon: ImageAssets.calender,
-            title: 'تاريخ التذكير',
-            value: '21/11/2023',
-            textColor: context.colorScheme.primary,
-          ),
+          isLoading
+              ? const ShimmerWidget(height: MySizes.defaultPadding)
+              : RowValue(
+                  icon: ImageAssets.calender,
+                  title: 'تاريخ التذكير',
+                  value: sentData?.sendDate ?? '',
+                  textColor: context.colorScheme.primary,
+                ),
           6.ph,
-          RowValue(
-            icon: ImageAssets.clock,
-            title: 'وقت التذكير',
-            value: '11:51 AM',
-            textColor: context.colorScheme.primary,
-          ),
+          isLoading
+              ? const ShimmerWidget(height: MySizes.defaultPadding)
+              : RowValue(
+                  icon: ImageAssets.clock,
+                  title: 'وقت التذكير',
+                  value: sentData?.sendTime ?? '',
+                  textColor: context.colorScheme.primary,
+                ),
           6.ph,
           CustomDivider(isVertical: false, size: context.width * 0.7),
           6.ph,
-          GestureDetector(
-            child: Text(
-              'اعادة جدولة',
-              textAlign: TextAlign.center,
-              style: context.textTheme.titleMedium?.copyWith(
-                color: context.colorScheme.primary,
-                fontWeight: FontWeight.bold,
+          if (sentData?.reminderStatus == 'finished')
+            GestureDetector(
+              child: Text(
+                'اعادة جدولة',
+                textAlign: TextAlign.center,
+                style: context.textTheme.titleMedium?.copyWith(
+                  color: context.colorScheme.primary,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
+              onTap: () {},
             ),
-            onTap: () {},
-          ),
-          6.ph,
-          GestureDetector(
-            child: Text(
-              'الغاء التنبيه',
-              textAlign: TextAlign.center,
-              style: context.textTheme.titleMedium?.copyWith(
-                color: context.colorScheme.error,
-                fontWeight: FontWeight.bold,
+          if (sentData?.reminderStatus != 'finished')
+            GestureDetector(
+              child: Text(
+                'الغاء التنبيه',
+                textAlign: TextAlign.center,
+                style: context.textTheme.titleMedium?.copyWith(
+                  color: context.colorScheme.error,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
+              onTap: () {},
             ),
-            onTap: () {},
-          ),
           6.ph,
         ],
       ),

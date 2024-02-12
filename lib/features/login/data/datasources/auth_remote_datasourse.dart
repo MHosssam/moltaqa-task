@@ -2,8 +2,8 @@ import 'package:task/core/constant/app_strings.dart';
 import 'package:task/core/error/exception.dart';
 import 'package:task/core/utils/Enums.dart';
 import 'package:task/core/utils/NetworkCallback.dart';
-import 'package:task/features/login/data/models/create_login_model.dart';
 import 'package:task/features/login/data/models/login_model.dart';
+import 'package:task/features/login/domain/usecases/login.dart';
 
 abstract class AuthRemoteDataSource {
   Future<LoginModel> login({required CreateLoginModel model});

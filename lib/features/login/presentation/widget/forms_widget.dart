@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task/config/routes/app_routes.dart';
 import 'package:task/core/constant/extensions.dart';
 import 'package:task/core/constant/my_sizes.dart';
+import 'package:task/core/constant/validations.dart';
 import 'package:task/core/widget/app_elevated_button.dart';
 import 'package:task/core/widget/custom_text_form_field.dart';
 import 'package:task/features/login/presentation/bloc/login_cubit.dart';
@@ -43,6 +45,7 @@ class _FormsWidgetState extends State<FormsWidget> {
               3.ph,
               CustomTextFormField(
                 hintText: '****051211',
+                validator: validatePhone,
                 keyboardType: TextInputType.number,
                 suffixWidget: Padding(
                   padding: const EdgeInsetsDirectional.only(end: MySizes.defaultPadding),
@@ -65,6 +68,7 @@ class _FormsWidgetState extends State<FormsWidget> {
               CustomTextFormField(
                 suffixBool: true,
                 hintText: '********',
+                validator: validatePassword,
                 keyboardType: TextInputType.visiblePassword,
                 onChanged: (String value) => context.read<LoginCubit>().loginParams.password = value,
               ),
@@ -76,15 +80,32 @@ class _FormsWidgetState extends State<FormsWidget> {
                 ),
               ),
               30.ph,
-              AppElevatedButton(
-                btnText: 'تسجيـل الدخـول',
-                onPressed: () async {
-                  if (formKey.currentState!.validate()) {
-                    await context.read<LoginCubit>().userLogin();
-                  }
-                  // Navigator.pushNamed(context, Routes.alertsRoute);
-                },
-              ),
+              BlocConsumer<LoginCubit, LoginState>(listener: (context, state) {
+                if (state is LoginSuccess) {
+                  Navigator.pushNamed(context, Routes.alertsRoute);
+                } else if (state is LoginError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.message),
+                      duration: const Duration(seconds: 2),
+                      backgroundColor: context.colorScheme.error,
+                    ),
+                  );
+                }
+              }, builder: (context, loginState) {
+                if (loginState is LoginLoading) {
+                  return Center(child: context.loading);
+                } else {
+                  return AppElevatedButton(
+                    btnText: 'تسجيـل الدخـول',
+                    onPressed: () async {
+                      if (formKey.currentState!.validate()) {
+                        await context.read<LoginCubit>().userLogin();
+                      }
+                    },
+                  );
+                }
+              }),
               10.ph,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

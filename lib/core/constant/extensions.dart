@@ -8,6 +8,8 @@ extension Extentions on BuildContext {
   ColorScheme get colorScheme => Theme.of(this).colorScheme;
   TextTheme get textTheme => Theme.of(this).textTheme;
   ElevatedButtonThemeData get elevatedButtonTheme => Theme.of(this).elevatedButtonTheme;
+  Widget get loading => const CircularProgressIndicator();
+
 }
 
 extension EmptyPadding on num {

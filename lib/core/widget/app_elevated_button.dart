@@ -24,23 +24,24 @@ class AppElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width ?? double.infinity,
-      height: height ?? MySizes.buttonHeight,
-      decoration: BoxDecoration(
-        borderRadius: borderRadius ?? MySizes.circleBorderRadius,
-        gradient: gradient ??
-            LinearGradient(
-              colors: [
-                context.colorScheme.secondary,
-                context.colorScheme.surface,
-                context.colorScheme.primary,
-                context.colorScheme.primary,
-              ],
-            ),
-      ),
-      child: ElevatedButton(
-        onPressed: onPressed,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        alignment: Alignment.center,
+        width: width ?? double.infinity,
+        height: height ?? MySizes.buttonHeight,
+        decoration: BoxDecoration(
+          borderRadius: borderRadius ?? MySizes.circleBorderRadius,
+          gradient: gradient ??
+              LinearGradient(
+                colors: [
+                  context.colorScheme.secondary,
+                  context.colorScheme.surface,
+                  context.colorScheme.primary,
+                  context.colorScheme.primary,
+                ],
+              ),
+        ),
         child: Text(
           btnText,
           style: textStyle ??

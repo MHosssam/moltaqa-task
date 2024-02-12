@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/core/constant/app_strings.dart';
+import 'package:task/features/alerts/presentation/bloc/alert_cubit.dart';
+import 'package:task/features/alerts/presentation/bloc/toggle_cubit.dart';
 import 'package:task/features/login/presentation/bloc/login_cubit.dart';
 import 'package:task/features/splash/splash_screen.dart';
 
@@ -23,6 +25,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<LoginCubit>(create: (BuildContext context) => sl<LoginCubit>()),
+        BlocProvider<AlertCubit>(create: (BuildContext context) => sl<AlertCubit>()),
+        BlocProvider<ToggleCubit>(create: (BuildContext context) => ToggleCubit()),
       ],
       child: MaterialApp(
         title: AppString.appName,
