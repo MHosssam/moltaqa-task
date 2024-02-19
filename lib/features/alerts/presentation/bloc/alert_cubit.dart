@@ -12,6 +12,9 @@ class AlertCubit extends Cubit<AlertState> {
   final GetReceiverData getReceiverData;
   AlertCubit({required this.getReceiverData}) : super(AlertInitial());
 
+
+  bool isReceived = true;
+
   int nextPage = 1;
   bool isMore = false;
   List<Alerts> alertList = [];
@@ -46,4 +49,9 @@ class AlertCubit extends Cubit<AlertState> {
   void emitLoadingState(int pageNumber) => pageNumber > 1 ? emit(AlertLoadingMore()) : emit(AlertLoading());
 
   bool isGetAlerts() => nextPage == 1 || isMore;
+
+  void toggleBtnValue({required bool val}) {
+    isReceived = val;
+    emit(ToggleState());
+  }
 }

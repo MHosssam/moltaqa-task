@@ -7,6 +7,7 @@ abstract class AlertState extends Equatable {
   @override
   List<Object> get props => [];
 }
+
 class AlertInitial extends AlertState {}
 
 class AlertLoading extends AlertState {}
@@ -16,3 +17,5 @@ class AlertLoadingMore extends AlertState {}
 class AlertHasData extends AlertState {}
 
 class AlertError extends AlertState {}
+
+class ToggleState extends AlertState {}
